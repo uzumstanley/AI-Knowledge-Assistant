@@ -7,6 +7,8 @@ A FastAPI + Streamlit app for RAG-based question answering over PDF documents wi
 - TF-IDF vector similarity search.
 - Hugging Face Chat API for answers.
 - Chat-style conversation flow in Streamlit.
+
+App live link:  https://ai-doc-knowledge-assistant.streamlit.app
  
 ### Overview
 AI Knowledge Assistant is a lightweight, open-source PDF Q&A system built with:
