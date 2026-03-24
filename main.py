@@ -51,5 +51,9 @@ def ask(body: AskRequest):
     if vector_db is None:
         return {"answer": "Upload a document first."}
 
-    answer = generate_answer(vector_db, body.question, history=body.history)
+    try:
+        answer = generate_answer(vector_db, body.question, history=body.history)
+    except Exception as e:
+        return {"answer": f"Error generating answer: {e}."}
+
     return {"answer": answer}

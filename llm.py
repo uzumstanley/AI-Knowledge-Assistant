@@ -66,12 +66,13 @@ def query_llm(prompt: str, max_tokens: int = 512):
         return f"(API token invalid or unauthorized: HTTP {resp.status_code})"
 
     if resp.status_code != 200:
-        raise RuntimeError(f"LLM error: HTTP {resp.status_code} {resp.text}")
+        # Return error text upwards so API returns 200 with message instead of HTTP 500.
+        return f"(LLM error: HTTP {resp.status_code} {resp.text})"
 
     try:
         data = resp.json()
     except ValueError:
-        raise RuntimeError(f"LLM error: invalid JSON from API: {resp.text}")
+        return f"(LLM error: invalid JSON from API: {resp.text})"
 
     content = _extract_content(data)
     if content is not None:
